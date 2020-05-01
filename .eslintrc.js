@@ -25,6 +25,7 @@ module.exports = {
     'no-unreachable': 'error',
     'object-curly-spacing': ['error', 'always'],
     'quotes': 'off',
-    'semi': ['error', 'never']
+    'semi': ['error', 'never'],
+    'max-len': 1
   }
 }

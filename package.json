@@ -12,8 +12,10 @@
   "author": "rkabis",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "graphql-import-node": "^0.0.4",
-    "graphql-yoga": "1.18.3"
+    "graphql-yoga": "1.18.3",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.24.0",
