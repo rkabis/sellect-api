@@ -17,9 +17,15 @@ const defaultDefs = `
 		destination: String!
 	}
 
+	type QuoteFees {
+		provider: String
+		fee: String
+	}
+
 	type QuoteResponse {
 		distance: String
 		duration: String
+		fees: [QuoteFees]
 	}
 
 	type DeliveryQuote {
