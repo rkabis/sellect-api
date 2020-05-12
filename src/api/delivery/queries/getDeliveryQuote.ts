@@ -1,21 +1,25 @@
-
-
 import mrspeedy from '../../../clients/mrspeedy'
 import google from '../../../clients/google'
+import lalamove from '../../../clients/lalamove'
 
 export default async (args: {origin: string; destination: string}) => {
   const { origin, destination } = args
 
   const googleRes = await google({ origin, destination })
 
-  const googleOrigin = googleRes.origin_addresses[0]
-  const googleDestination = googleRes.destination_addresses[0]
+  const googleOrigin = googleRes.origin
+  const googleDestination = googleRes.destination
   const dateNow = Date.now()
 
   const speedyQuote = await mrspeedy({
     origin: googleOrigin,
     destination: googleDestination,
     date: dateNow
+  })
+
+  const lalamoveQuote = await lalamove({
+    origin: { x: googleRes.originGeo.lat, y: googleRes.originGeo.lng },
+    destination: { x: googleRes.destinationGeo.lat, y: googleRes.destinationGeo.lng }
   })
 
   return {
@@ -25,13 +29,14 @@ export default async (args: {origin: string; destination: string}) => {
     },
     deliveryResponse: {
       origin: googleOrigin,
-      destination: googleOrigin
+      destination: googleDestination
     },
     quoteResponse: {
-      distance: googleRes.rows[0].elements[0].distance.text,
-      duration: googleRes.rows[0].elements[0].duration.text,
+      distance: googleRes.distance,
+      duration: googleRes.duration,
       fees: [
-        { provider: 'MrSpeedy', fee: speedyQuote }
+        { provider: 'MrSpeedy', fee: speedyQuote },
+        { provider: 'Lalamove', fee: lalamoveQuote }
       ]
     }
   }
