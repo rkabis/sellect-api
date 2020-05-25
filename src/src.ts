@@ -12,9 +12,20 @@ const defaultDefs = `
 	  getTemplate(text: String!): Template
 	}
 
+	type LocationInfo {
+		name: String!
+		lng: Float!
+		lat: Float!
+	}
+
 	type DeliveryRequest {
 		origin: String!
 		destination: String!
+	}
+
+	type DeliveryResponse {
+		origin: LocationInfo!
+		destination: LocationInfo!
 	}
 
 	type QuoteFees {
@@ -30,7 +41,7 @@ const defaultDefs = `
 
 	type DeliveryQuote {
 		deliveryRequest: DeliveryRequest!
-		deliveryResponse: DeliveryRequest!
+		deliveryResponse: DeliveryResponse!
 		quoteResponse: QuoteResponse
 	}
 

@@ -28,8 +28,16 @@ export default async (args: {origin: string; destination: string}) => {
       destination
     },
     deliveryResponse: {
-      origin: googleOrigin,
-      destination: googleDestination
+      origin: {
+        name: googleOrigin,
+        lng: googleRes.originGeo.lng,
+        lat: googleRes.originGeo.lat
+      },
+      destination: {
+        name: googleDestination,
+        lng: googleRes.destinationGeo.lng,
+        lat: googleRes.destinationGeo.lat
+      }
     },
     quoteResponse: {
       distance: googleRes.distance,
