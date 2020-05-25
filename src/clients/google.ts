@@ -21,11 +21,13 @@ const google = async(req: { destination: string; origin: string }) => {
   )
     .then(res => res.json())
 
+  const badStatus = res.rows[0].elements[0].status == 'ZERO_RESULTS'
+
   return {
     origin: res.origin_addresses[0],
     destination: res.destination_addresses[0],
-    distance: res.rows[0].elements[0].distance.text,
-    duration: res.rows[0].elements[0].duration.text,
+    distance: !badStatus && res.rows[0].elements[0].distance.text,
+    duration: !badStatus && res.rows[0].elements[0].duration.text,
     destinationGeo: destinationRes.results[0].geometry.location,
     originGeo: originRes.results[0].geometry.location
   }
