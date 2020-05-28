@@ -1,6 +1,7 @@
 import mrspeedy from '../../../clients/mrspeedy'
 import google from '../../../clients/google'
 import lalamove from '../../../clients/lalamove'
+import transportify from '../../../clients/transportify'
 
 export default async (args: {origin: string; destination: string}) => {
   const { origin, destination } = args
@@ -20,6 +21,12 @@ export default async (args: {origin: string; destination: string}) => {
   const lalamoveQuote = await lalamove({
     origin: { x: googleRes.originGeo.lat, y: googleRes.originGeo.lng },
     destination: { x: googleRes.destinationGeo.lat, y: googleRes.destinationGeo.lng }
+  })
+
+  const transportifyQuote = await transportify({
+    origin: { x: googleRes.originGeo.lat, y: googleRes.originGeo.lng },
+    destination: { x: googleRes.destinationGeo.lat, y: googleRes.destinationGeo.lng },
+    date: dateNow
   })
 
   return {
@@ -44,7 +51,8 @@ export default async (args: {origin: string; destination: string}) => {
       duration: googleRes.duration,
       fees: [
         { provider: 'MrSpeedy', fee: speedyQuote },
-        { provider: 'Lalamove', fee: lalamoveQuote }
+        { provider: 'Lalamove', fee: lalamoveQuote },
+        { provider: 'Transportify', fee: transportifyQuote }
       ]
     }
   }
