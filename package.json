@@ -12,6 +12,7 @@
   "author": "rkabis",
   "license": "ISC",
   "dependencies": {
+    "airtable": "^0.8.1",
     "dotenv": "^8.2.0",
     "graphql-import-node": "^0.0.4",
     "graphql-yoga": "1.18.3",

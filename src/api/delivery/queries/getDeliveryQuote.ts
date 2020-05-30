@@ -3,6 +3,7 @@ import google from '../../../clients/google'
 import lalamove from '../../../clients/lalamove'
 import transportify from '../../../clients/transportify'
 import grab from '../../../clients/grab'
+import { trackQuery } from '../../../clients/airtable'
 
 export default async (args: {origin: string; destination: string}) => {
   const { origin, destination } = args
@@ -12,6 +13,12 @@ export default async (args: {origin: string; destination: string}) => {
   const googleOrigin = googleRes.origin
   const googleDestination = googleRes.destination
   const dateNow = Date.now()
+
+  trackQuery({
+    origin: googleOrigin,
+    destination: googleDestination,
+    date: dateNow.toString()
+  })
 
   const speedyCall = () => mrspeedy({
     origin: googleOrigin,
