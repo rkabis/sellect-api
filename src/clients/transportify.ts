@@ -26,7 +26,7 @@ const transportifyRequest = async (req) => {
       'mode': 'cors'
     }).then(res => res.json())
 
-  return res.object.total_fees
+  return res.object.total_fees.toString()
 }
 
 export default transportifyRequest

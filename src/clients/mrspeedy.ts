@@ -21,7 +21,7 @@ const mrspeedy = async (req: {destination: string; origin: string; date: number}
       'mode': 'cors'
     })
     .then(res => res.json())
-    .then(json => json.order.delivery_fee)
+    .then(json => json.order.delivery_fee.toString())
 
   return res
 }

@@ -14,12 +14,6 @@ export default async (args: {origin: string; destination: string}) => {
   const googleDestination = googleRes.destination
   const dateNow = Date.now()
 
-  trackQuery({
-    origin: googleOrigin,
-    destination: googleDestination,
-    date: dateNow.toString()
-  })
-
   const speedyCall = () => mrspeedy({
     origin: googleOrigin,
     destination: googleDestination,
@@ -53,6 +47,18 @@ export default async (args: {origin: string; destination: string}) => {
     transportifyCall(),
     grabCall()
   ])
+
+  trackQuery({
+    origin: googleOrigin,
+    destination: googleDestination,
+    date: dateNow.toString(),
+    quotes: {
+      grab: grabQuote,
+      speedy: speedyQuote,
+      lalamove: lalamoveQuote,
+      transportify: transportifyQuote
+    }
+  })
 
   return {
     deliveryRequest: {

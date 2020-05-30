@@ -20,7 +20,7 @@ const lalamoveRequest = async (req) => {
       'mode': 'cors'
     }).then(res => res.json())
 
-  return res.data.basic
+  return res.data.basic.toString()
 }
 
 export default lalamoveRequest

@@ -7,12 +7,17 @@ export const trackQuery = (req) => {
   const base = new Airtable({ apiKey: airtableAPIKey }).base(airtableQueryKey)
 
   const randomId = `${Math.random()}-${req.date}`
+  const quotes = req.quotes
 
   base('Imported table').create({
     'ID': randomId,
     'Destination': req.destination,
     'Time': req.date,
-    'Origin': req.origin
+    'Origin': req.origin,
+    'Grab': quotes.grab,
+    'Lalamove': quotes.lalamove,
+    'Transportify': quotes.transportify,
+    'MrSpeedy': quotes.speedy
   }, function(err, record) {
     if (err) {
       console.error(err)
