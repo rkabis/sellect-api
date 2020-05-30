@@ -13,27 +13,39 @@ export default async (args: {origin: string; destination: string}) => {
   const googleDestination = googleRes.destination
   const dateNow = Date.now()
 
-  const speedyQuote = await mrspeedy({
+  const speedyCall = () => mrspeedy({
     origin: googleOrigin,
     destination: googleDestination,
     date: dateNow
   })
 
-  const lalamoveQuote = await lalamove({
+  const lalamoveCall = () => lalamove({
     origin: { x: googleRes.originGeo.lat, y: googleRes.originGeo.lng },
     destination: { x: googleRes.destinationGeo.lat, y: googleRes.destinationGeo.lng }
   })
 
-  const transportifyQuote = await transportify({
+  const transportifyCall = () => transportify({
     origin: { x: googleRes.originGeo.lat, y: googleRes.originGeo.lng },
     destination: { x: googleRes.destinationGeo.lat, y: googleRes.destinationGeo.lng },
     date: dateNow
   })
 
-  const grabQuote = await grab({
+  const grabCall = () => grab({
     origin: googleRes.originGeo,
     destination: googleRes.destinationGeo
   })
+
+  const [
+    speedyQuote,
+    lalamoveQuote,
+    transportifyQuote,
+    grabQuote
+  ] = await Promise.all([
+    speedyCall(),
+    lalamoveCall(),
+    transportifyCall(),
+    grabCall()
+  ])
 
   return {
     deliveryRequest: {
