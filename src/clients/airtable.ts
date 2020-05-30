@@ -3,7 +3,7 @@ import Airtable from 'airtable'
 export const trackQuery = (req) => {
   const airtableAPIKey = process.env.AIRTABLE_API_KEY
   const airtableQueryKey = process.env.AIRTABLE_QUERYTRACKER_ID
-  console.log(Airtable)
+
   const base = new Airtable({ apiKey: airtableAPIKey }).base(airtableQueryKey)
 
   const randomId = `${Math.random()}-${req.date}`
