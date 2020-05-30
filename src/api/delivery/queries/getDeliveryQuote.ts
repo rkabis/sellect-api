@@ -2,6 +2,7 @@ import mrspeedy from '../../../clients/mrspeedy'
 import google from '../../../clients/google'
 import lalamove from '../../../clients/lalamove'
 import transportify from '../../../clients/transportify'
+import grab from '../../../clients/grab'
 
 export default async (args: {origin: string; destination: string}) => {
   const { origin, destination } = args
@@ -29,6 +30,11 @@ export default async (args: {origin: string; destination: string}) => {
     date: dateNow
   })
 
+  const grabQuote = await grab({
+    origin: googleRes.originGeo,
+    destination: googleRes.destinationGeo
+  })
+
   return {
     deliveryRequest: {
       origin,
@@ -52,7 +58,8 @@ export default async (args: {origin: string; destination: string}) => {
       fees: [
         { provider: 'MrSpeedy', fee: speedyQuote },
         { provider: 'Lalamove', fee: lalamoveQuote },
-        { provider: 'Transportify', fee: transportifyQuote }
+        { provider: 'Transportify', fee: transportifyQuote },
+        { provider: 'Grab', fee: grabQuote }
       ]
     }
   }
