@@ -1,6 +1,8 @@
 import fetch from 'node-fetch'
 
 const grabRequest = async (req) => {
+  const GRAB_AUTHORIZATION = process.env.GRAB_AUTHORIZATION
+
   const origin = req.origin
   const destination = req.destination
 
@@ -9,7 +11,7 @@ const grabRequest = async (req) => {
       'headers': {
         'accept': 'application/json',
         'accept-language': 'en-US,en;q=0.9',
-        'authorization': 'eyJhbGciOiJSUzI1NiIsImtpZCI6Il9kZWZhdWx0IiwidHlwIjoiSldUIn0.eyJhdWQiOiJFTlRFUlBSSVNFIiwiZXhwIjoxNTkwODUzNTMxLCJpYXQiOjE1OTA4MTAzMjgsImp0aSI6ImEyYzFmZDIyLWZlNWQtNDk1Ni1hY2UxLWU5MDA4ZDExMDFkMiIsImxtZSI6Ik5BVElWRSIsIm5hbWUiOiJya2FiaXNAdXAuZWR1LnBoIiwic3ViIjoiYWNkNDliMjktYmFkZC00NzMyLTgxYTAtOTAwMjBjY2QyMDg3In0.Qe_BmLpJoTd_iqE73TLeweToLO73HKUhgBZU7eIltd_H2t9htOLY5XvrXab0UF5E355odpl9dzG51VsLb7R-a_ABf-2zExKOSPZhXUDrFm3X7zmCAqh-nCluDya4zHKqEgRyzJDN5VpFYrntLhlYv18lfdaXEFMwzdocdyMObTiwR0_VK3GJ66Q7KUnGl77I4s7857FbGTnhAxjh_BcN3NCZkfQPm5JOPZNaOOgMaNT3cUXiaWtPuZCYQg9vukTqZye7eNoXLRqg_sM392tPPfALVyihcgy_R3YMiEfPHFZ7LCSXdoKsQQspbwZThnOV6RYhoA6ZUCJTZTBZbNMoxQ',
+        'authorization': GRAB_AUTHORIZATION,
         'content-type': 'application/json',
         'sec-fetch-dest': 'empty',
         'sec-fetch-mode': 'cors',
