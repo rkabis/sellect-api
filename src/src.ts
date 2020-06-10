@@ -7,6 +7,7 @@ const defaultDefs = `
 
 export const typeDefs = [
   defaultDefs,
+  template.typeDefs,
   delivery.typeDefs
 ]
 

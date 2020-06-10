@@ -1,7 +1,0 @@
-type Template {
-  text: String
-}
-
-extend type Query {
-  getTemplate(text: String!): Template
-}
