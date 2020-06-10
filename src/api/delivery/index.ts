@@ -1,7 +1,7 @@
 import resolvers from './resolvers'
-// import * as typeDefs from './schema/index.graphql'
+import typeDefs from './schema'
 
 export default {
-  resolvers
-  // typeDefs
+  resolvers,
+  typeDefs
 }
