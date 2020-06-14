@@ -1,12 +1,14 @@
-import { GraphQLServer } from 'graphql-yoga'
-import { typeDefs, resolvers } from './src'
+import template from './api/template'
+import delivery from './api/delivery'
 
-import 'graphql-import-node'
-require('dotenv').config()
+const defaultDefs = `
+  type Query
+`
 
-const server = new GraphQLServer({
-  typeDefs,
-  resolvers
-})
+export const typeDefs = [
+  defaultDefs,
+  template.typeDefs,
+  delivery.typeDefs
+]
 
-server.start(() => console.log('Server is running on http://localhost:4000'))
+export const resolvers = [template.resolvers, delivery.resolvers]

@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "nodemon --exec ts-node src/index.ts",
-    "start": "ts-node src/index.ts",
+    "dev": "nodemon --exec ts-node server.ts",
+    "start": "ts-node server.ts",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
   },
   "keywords": [],
