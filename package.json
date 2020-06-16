@@ -17,6 +17,7 @@
     "graphql-import-node": "^0.0.4",
     "graphql-tag": "^2.10.3",
     "graphql-yoga": "1.18.3",
+    "heroku-client": "^3.1.0",
     "node-fetch": "^2.6.0",
     "ts-node": "6.2.0",
     "typescript": "2.9.2"
