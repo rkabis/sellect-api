@@ -4,12 +4,14 @@ export const trackQuery = (req) => {
   const airtableAPIKey = process.env.AIRTABLE_API_KEY
   const airtableQueryKey = process.env.AIRTABLE_QUERYTRACKER_ID
 
+  const tableName = process.env.AIRTABLE_TABLE
+
   const base = new Airtable({ apiKey: airtableAPIKey }).base(airtableQueryKey)
 
   const randomId = `${Math.random()}-${req.date}`
   const quotes = req.quotes
 
-  base('Imported table').create({
+  base(tableName).create({
     'ID': randomId,
     'Destination': req.destination,
     'Time': req.date,

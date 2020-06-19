@@ -25,7 +25,9 @@ const grabRequest = async (req) => {
       'mode': 'cors'
     }).then(res => res.json())
 
-  const quote = res.deliveries[0].quotes.find(quote => quote.serviceID == 7143).amount.toString()
+  const quotes = res.deliveries[0].quotes.map(quote => quote.amount).filter(quote => quote !== undefined)
+
+  const quote = Math.min(...quotes).toString()
 
   return quote.substring(0, quote.length - 2)
 }
