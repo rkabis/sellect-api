@@ -5,8 +5,14 @@ import transportify from '../../../clients/transportify'
 import grab from '../../../clients/grab'
 import { trackQuery } from '../../../clients/airtable'
 
-export default async (args: {origin: string; destination: string}) => {
-  const { origin, destination } = args
+export default async (
+  args: {
+    origin: string;
+    destination: string;
+    cookie?: string;
+  }
+) => {
+  const { origin, destination, cookie } = args
 
   const googleRes = await google({ origin, destination })
 
@@ -57,7 +63,8 @@ export default async (args: {origin: string; destination: string}) => {
       speedy: speedyQuote,
       lalamove: lalamoveQuote,
       transportify: transportifyQuote
-    }
+    },
+    cookie
   })
 
   return {

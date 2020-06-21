@@ -19,7 +19,8 @@ export const trackQuery = (req) => {
     'Grab': quotes.grab,
     'Lalamove': quotes.lalamove,
     'Transportify': quotes.transportify,
-    'MrSpeedy': quotes.speedy
+    'MrSpeedy': quotes.speedy,
+    'Cookie': req.cookie
   }, function(err, record) {
     if (err) {
       console.error(err)
