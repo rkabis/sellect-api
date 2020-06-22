@@ -55,8 +55,16 @@ export default async (
   ])
 
   trackQuery({
-    origin: googleOrigin,
-    destination: googleDestination,
+    origin: {
+      name: googleOrigin,
+      lng: googleRes.originGeo.lng,
+      lat: googleRes.originGeo.lat
+    },
+    destination: {
+      name: googleDestination,
+      lng: googleRes.destinationGeo.lng,
+      lat: googleRes.destinationGeo.lat
+    },
     date: dateNow.toString(),
     quotes: {
       grab: grabQuote,
@@ -64,7 +72,9 @@ export default async (
       lalamove: lalamoveQuote,
       transportify: transportifyQuote
     },
-    cookie
+    cookie,
+    distance: googleRes.distance,
+    duration: googleRes.duration
   })
 
   return {

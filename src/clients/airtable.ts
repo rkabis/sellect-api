@@ -13,14 +13,18 @@ export const trackQuery = (req) => {
 
   base(tableName).create({
     'ID': randomId,
-    'Destination': req.destination,
+    'Destination': req.destination.name,
     'Time': req.date,
-    'Origin': req.origin,
+    'Origin': req.origin.name,
     'Grab': quotes.grab,
     'Lalamove': quotes.lalamove,
     'Transportify': quotes.transportify,
     'MrSpeedy': quotes.speedy,
-    'Cookie': req.cookie
+    'Cookie': req.cookie,
+    'Distance': req.distance,
+    'Duration': req.duration,
+    'Origin_Geo': `${req.origin.lng}, ${req.origin.lat}`,
+    'Destination_Geo': `${req.destination.lng}, ${req.destination.lat}`
   }, function(err, record) {
     if (err) {
       console.error(err)
