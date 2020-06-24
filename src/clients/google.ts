@@ -1,4 +1,5 @@
 import fetch from 'node-fetch'
+import cleanString from '../utils/cleanString'
 
 const googleDistanceLink = 'https://maps.googleapis.com/maps/api/distancematrix/json'
 const googleGeocodeLink = 'https://maps.googleapis.com/maps/api/geocode/json'
@@ -6,18 +7,21 @@ const googleGeocodeLink = 'https://maps.googleapis.com/maps/api/geocode/json'
 const google = async(req: { destination: string; origin: string }) => {
   const googleApiKey = process.env.GOOGLE_API_KEY
 
+  const origin = cleanString(req.origin)
+  const destination = cleanString(req.destination)
+
   const originRes = await fetch(
-    `${googleGeocodeLink}?key=${googleApiKey}&address=${req.origin}`
+    `${googleGeocodeLink}?key=${googleApiKey}&address=${cleanString(origin)}`
   )
     .then(res => res.json())
 
   const destinationRes = await fetch(
-    `${googleGeocodeLink}?key=${googleApiKey}&address=${req.destination}`
+    `${googleGeocodeLink}?key=${googleApiKey}&address=${cleanString(destination)}`
   )
     .then(res => res.json())
 
   const res = await fetch(
-    `${googleDistanceLink}?key=${googleApiKey}&origins=${req.origin}&destinations=${req.destination}`
+    `${googleDistanceLink}?key=${googleApiKey}&origins=${origin}&destinations=${destination}`
   )
     .then(res => res.json())
 
