@@ -33,3 +33,25 @@ export const trackQuery = (req) => {
     console.log(record.getId())
   })
 }
+
+export const trackError = (req: any) => {
+  const airtableAPIKey = process.env.AIRTABLE_API_KEY
+  const airtableQueryKey = process.env.AIRTABLE_ERRORTRACKER_ID
+  const tableName = process.env.AIRTABLE_TABLE
+
+  const base = new Airtable({ apiKey: airtableAPIKey }).base(airtableQueryKey)
+
+  base(tableName).create({
+    'ID': `Backend-${req.date}`,
+    'Cookie': req.cookie,
+    'Error': `${req.provider}-${req.error}`,
+    'Origin': req.origin,
+    'Destination': req.destination
+  }, function(err: any, record: any) {
+    if (err) {
+      console.error(err)
+      return
+    }
+    console.log(record.getId())
+  } as any)
+}
