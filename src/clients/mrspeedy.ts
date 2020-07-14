@@ -1,6 +1,28 @@
 import fetch from 'node-fetch'
 
-const mrspeedy = async (req: {destination: string; origin: string; date: number}): Promise<string> => {
+const convertToTransport = (size) => {
+  switch (size) {
+  case 'small':
+    return ['8', '0']
+  case 'medium':
+    return ['7', '0']
+  case 'large':
+    return ['7', '500']
+  default:
+    return ['8', '0']
+  }
+}
+
+const mrspeedy = async (
+  req: {
+    destination: string;
+    origin: string;
+    date: number;
+     size: string;
+   }
+): Promise<string> => {
+
+  const transport = convertToTransport(req.size)
 
   const res = await fetch(
     'https://apitest.mrspeedy.ph/order-r/calculate-order', {
@@ -16,12 +38,12 @@ const mrspeedy = async (req: {destination: string; origin: string; date: number}
       },
       'referrer': 'https://apitest.mrspeedy.ph/order?from_address=Gilmore+Townhomes%2C+Granada%2C+Quezon+City%2C+Metro+Manila%2C+Philippines&from_place_id=ChIJr3VL2dO3lzMRE_LcFtoa3dk&to_address=UP+Diliman%2C+Diliman%2C+Quezon+City%2C+Metro+Manila%2C+Philippines&to_place_id=ChIJxeVAdHK3lzMRjwzYDU0vSek&vehicle=motorbike',
       'referrerPolicy': 'no-referrer-when-downgrade',
-      'body': `{"region_id":29,"form_type":"standard","vehicle_type_id":"8","total_weight":"0","matter":"","experiments":[],"cargo_dimensions":null,"is_oversized_item":false,"backpayment_details":"","payment_method":"cash","bank_card_id":null,"promo_code":"","require_loading":false,"sms_notification":true,"recipients_sms_notification":true,"is_asap":false,"points":[{"point_mode":"incity","point_id":null,"uid":"0","address":"${req.origin}","latitude":null,"longitude":null,"phone":"","date":"${req.date}","required_time_start":"","required_time":"","note":"","entrance_number":"","floor_number":"","apartment_number":"","invisible_mile_navigation_instructions":"","is_order_payment_here":false},{"point_mode":"incity","point_id":null,"uid":"1","address":"${req.destination}","latitude":null,"longitude":null,"phone":"","date":"${req.date}","required_time_start":"","required_time":"","note":"","entrance_number":"","floor_number":"","apartment_number":"","invisible_mile_navigation_instructions":"","is_order_payment_here":false}],"insurance":"","client_phone":"","client_phone_verification_code":""}`,
+      'body': `{"region_id":29,"form_type":"standard","vehicle_type_id":"${transport[0]}","total_weight":"${transport[1]}","matter":"","experiments":[],"cargo_dimensions":null,"is_oversized_item":false,"backpayment_details":"","payment_method":"cash","bank_card_id":null,"promo_code":"","require_loading":false,"sms_notification":true,"recipients_sms_notification":true,"is_asap":false,"points":[{"point_mode":"incity","point_id":null,"uid":"0","address":"${req.origin}","latitude":null,"longitude":null,"phone":"","date":"${req.date}","required_time_start":"","required_time":"","note":"","entrance_number":"","floor_number":"","apartment_number":"","invisible_mile_navigation_instructions":"","is_order_payment_here":false},{"point_mode":"incity","point_id":null,"uid":"1","address":"${req.destination}","latitude":null,"longitude":null,"phone":"","date":"${req.date}","required_time_start":"","required_time":"","note":"","entrance_number":"","floor_number":"","apartment_number":"","invisible_mile_navigation_instructions":"","is_order_payment_here":false}],"insurance":"","client_phone":"","client_phone_verification_code":""}`,
       'method': 'POST',
       'mode': 'cors'
     })
     .then(res => res.json())
-    .then(json => json.order.delivery_fee.toString())
+    .then(json => json.order.payment.toString())
 
   return res
 }

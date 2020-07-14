@@ -35,7 +35,8 @@ export default async (
   const speedyCall = () => mrspeedy({
     origin: googleOrigin,
     destination: googleDestination,
-    date: dateNow
+    date: dateNow,
+    size
   }).catch(err => logError(err, 'MrSpeedy'))
 
   const lalamoveCall = () => lalamove({
