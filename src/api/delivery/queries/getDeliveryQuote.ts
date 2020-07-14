@@ -40,7 +40,8 @@ export default async (
 
   const lalamoveCall = () => lalamove({
     origin: { x: googleRes.originGeo.lat, y: googleRes.originGeo.lng },
-    destination: { x: googleRes.destinationGeo.lat, y: googleRes.destinationGeo.lng }
+    destination: { x: googleRes.destinationGeo.lat, y: googleRes.destinationGeo.lng },
+    size
   }).catch(err => logError(err, 'Lalamove'))
 
   const transportifyCall = () => transportify({
