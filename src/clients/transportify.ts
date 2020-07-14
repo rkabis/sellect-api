@@ -1,9 +1,22 @@
 import fetch from 'node-fetch'
 
+const convertToTransport = (size) => {
+  switch (size) {
+  case 'medium':
+    return 34
+  case 'large':
+    return 35
+  default:
+    return 34
+  }
+}
+
 const transportifyRequest = async (req) => {
   const origin = req.origin
   const destination = req.destination
   const dateNow = req.date
+
+  const transport = convertToTransport(req.size)
 
   const res = await fetch(
     'https://webapp.transportify.com.ph/api/v3/bookings/calculate',
@@ -21,7 +34,7 @@ const transportifyRequest = async (req) => {
       },
       'referrer': 'https://webapp.transportify.com.ph/?area_id=5&lang=en',
       'referrerPolicy': 'no-referrer-when-downgrade',
-      'body': `{"locations_attributes":[{"latitude":${origin.x},"longitude":${origin.y},"need_cod":false,"cod_invoice_fees":"","extra_requirement_locations_attributes":[],"address_components":[{"long_name":"249","short_name":"249","types":["subpremise"]},{"long_name":"216","short_name":"216","types":["street_number"]},{"long_name":"Katipunan Avenue","short_name":"Katipunan Ave","types":["route"]},{"long_name":"Diliman","short_name":"Diliman","types":["sublocality_level_1","sublocality","political"]},{"long_name":"Quezon City","short_name":"QC","types":["locality","political"]},{"long_name":"Metro Manila","short_name":"NCR","types":["administrative_area_level_1","political"]},{"long_name":"Philippines","short_name":"PH","types":["country","political"]},{"long_name":"1800","short_name":"1800","types":["postal_code"]}],"name":"U.P. Town Center, Katipunan Avenue, Diliman, Quezon City, Metro Manila, Philippines"},{"latitude":${destination.x},"longitude":${destination.y},"need_cod":false,"cod_invoice_fees":"","extra_requirement_locations_attributes":[],"address_components":[{"long_name":"Katipunan Avenue","short_name":"Katipunan Ave","types":["route"]},{"long_name":"Quezon City","short_name":"QC","types":["locality","political"]},{"long_name":"Metro Manila","short_name":"NCR","types":["administrative_area_level_1","political"]},{"long_name":"Philippines","short_name":"PH","types":["country","political"]},{"long_name":"1108","short_name":"1108","types":["postal_code"]}],"name":"Ateneo de Manila University, Katipunan Avenue, Quezon City, Metro Manila, Philippines"}],"company_id":0,"vehicle_type_id":34,"discount_code":"","round_trip_discount":false,"time_type":"now","pickup_time":"${dateNow}","full_day_selected_amount":1,"booking_extra_requirements_attributes":[{"extra_requirement_id":1093,"selected_amount":1,"is_flat":true,"position":0,"unit_price":0}],"enable_quote":true,"quote_id":"","quick_choice_id":51,"include":["settlements"]}`,
+      'body': `{"locations_attributes":[{"latitude":${origin.x},"longitude":${origin.y},"need_cod":false,"cod_invoice_fees":"","extra_requirement_locations_attributes":[],"address_components":[{"long_name":"249","short_name":"249","types":["subpremise"]},{"long_name":"216","short_name":"216","types":["street_number"]},{"long_name":"Katipunan Avenue","short_name":"Katipunan Ave","types":["route"]},{"long_name":"Diliman","short_name":"Diliman","types":["sublocality_level_1","sublocality","political"]},{"long_name":"Quezon City","short_name":"QC","types":["locality","political"]},{"long_name":"Metro Manila","short_name":"NCR","types":["administrative_area_level_1","political"]},{"long_name":"Philippines","short_name":"PH","types":["country","political"]},{"long_name":"1800","short_name":"1800","types":["postal_code"]}],"name":"U.P. Town Center, Katipunan Avenue, Diliman, Quezon City, Metro Manila, Philippines"},{"latitude":${destination.x},"longitude":${destination.y},"need_cod":false,"cod_invoice_fees":"","extra_requirement_locations_attributes":[],"address_components":[{"long_name":"Katipunan Avenue","short_name":"Katipunan Ave","types":["route"]},{"long_name":"Quezon City","short_name":"QC","types":["locality","political"]},{"long_name":"Metro Manila","short_name":"NCR","types":["administrative_area_level_1","political"]},{"long_name":"Philippines","short_name":"PH","types":["country","political"]},{"long_name":"1108","short_name":"1108","types":["postal_code"]}],"name":"Ateneo de Manila University, Katipunan Avenue, Quezon City, Metro Manila, Philippines"}],"company_id":0,"vehicle_type_id":${transport},"discount_code":"","round_trip_discount":false,"time_type":"now","pickup_time":"${dateNow}","full_day_selected_amount":1,"booking_extra_requirements_attributes":[{"extra_requirement_id":1093,"selected_amount":1,"is_flat":true,"position":0,"unit_price":0}],"enable_quote":true,"quote_id":"","quick_choice_id":51,"include":["settlements"]}`,
       'method': 'POST',
       'mode': 'cors'
     }).then(res => res.json())

@@ -48,7 +48,8 @@ export default async (
   const transportifyCall = () => transportify({
     origin: { x: googleRes.originGeo.lat, y: googleRes.originGeo.lng },
     destination: { x: googleRes.destinationGeo.lat, y: googleRes.destinationGeo.lng },
-    date: dateNow
+    date: dateNow,
+    size
   }).catch(err => logError(err, 'Transportify'))
 
   const grabCall = () => grab({
