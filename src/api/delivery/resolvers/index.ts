@@ -2,10 +2,19 @@ import { getDeliveryQuote } from '../queries/index'
 
 export default {
   Query: {
-    getDeliveryQuote: (_root: undefined, _args: { origin: string; destination: string; cookie?: string }) => {
-      const { origin, destination, cookie } = _args
+    getDeliveryQuote: (
+      _root: undefined,
+      _args: {
+				origin: string;
+				destination: string;
+				size?: string;
+				cookie?: string;
+			}
+    ) => {
 
-      return getDeliveryQuote({ origin, destination, cookie })
+      const { origin, destination, size, cookie } = _args
+
+      return getDeliveryQuote({ origin, destination, size, cookie })
     }
   }
 }

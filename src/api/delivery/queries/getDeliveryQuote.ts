@@ -9,10 +9,11 @@ export default async (
   args: {
     origin: string;
     destination: string;
+    size?: string;
     cookie?: string;
   }
 ) => {
-  const { origin, destination, cookie } = args
+  const { origin, destination, size, cookie } = args
 
   const googleRes = await google({ origin, destination })
 
