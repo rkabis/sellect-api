@@ -27,7 +27,9 @@ const grabRequest = async (req) => {
 
   const quotes = res.deliveries[0].quotes.map(quote => quote.amount).filter(quote => quote !== undefined)
 
-  const quote = Math.min(...quotes).toString()
+  const quote = req.size == 'medium'
+    ? Math.max(...quotes).toString()
+    : Math.min(...quotes).toString()
 
   return quote.substring(0, quote.length - 2)
 }

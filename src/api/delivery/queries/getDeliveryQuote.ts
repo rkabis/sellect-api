@@ -54,7 +54,8 @@ export default async (
 
   const grabCall = () => grab({
     origin: googleRes.originGeo,
-    destination: googleRes.destinationGeo
+    destination: googleRes.destinationGeo,
+    size
   }).catch(err => logError(err, 'Grab'))
 
   const [
