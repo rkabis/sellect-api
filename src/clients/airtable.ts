@@ -24,7 +24,8 @@ export const trackQuery = (req) => {
     'Distance': req.distance,
     'Duration': req.duration,
     'Origin_Geo': `${req.origin.lng}, ${req.origin.lat}`,
-    'Destination_Geo': `${req.destination.lng}, ${req.destination.lat}`
+    'Destination_Geo': `${req.destination.lng}, ${req.destination.lat}`,
+    'Size': req.size
   }, function(err, record) {
     if (err) {
       console.error(err)

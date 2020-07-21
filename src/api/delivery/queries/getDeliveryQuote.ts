@@ -90,7 +90,8 @@ export default async (
     },
     cookie,
     distance: googleRes.distance,
-    duration: googleRes.duration
+    duration: googleRes.duration,
+    size
   })
 
   return {
