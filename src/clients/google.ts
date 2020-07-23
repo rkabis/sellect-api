@@ -11,12 +11,12 @@ const google = async(req: { destination: string; origin: string }) => {
   const destination = cleanString(req.destination)
 
   const originRes = await fetch(
-    `${googleGeocodeLink}?key=${googleApiKey}&address=${cleanString(origin)}`
+    `${googleGeocodeLink}?key=${googleApiKey}&address=${cleanString(origin)}&components=country:PH`
   )
     .then(res => res.json())
 
   const destinationRes = await fetch(
-    `${googleGeocodeLink}?key=${googleApiKey}&address=${cleanString(destination)}`
+    `${googleGeocodeLink}?key=${googleApiKey}&address=${cleanString(destination)}&components=country:PH`
   )
     .then(res => res.json())
 
