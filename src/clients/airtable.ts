@@ -20,6 +20,7 @@ export const trackQuery = (req) => {
     'Lalamove': quotes.lalamove,
     'Transportify': quotes.transportify,
     'MrSpeedy': quotes.speedy,
+    'Happymove': quotes.happymove,
     'Cookie': req.cookie,
     'Distance': req.distance,
     'Duration': req.duration,

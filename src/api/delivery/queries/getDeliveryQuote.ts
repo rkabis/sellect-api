@@ -3,6 +3,7 @@ import google from '../../../clients/google'
 import lalamove from '../../../clients/lalamove'
 import transportify from '../../../clients/transportify'
 import grab from '../../../clients/grab'
+import happymove from '../../../clients/happymove'
 import { trackQuery, trackError } from '../../../clients/airtable'
 
 export default async (
@@ -58,16 +59,23 @@ export default async (
     size
   }).catch(err => logError(err, 'Grab'))
 
+  const happymoveCall = () => happymove({
+    size,
+    distance: googleRes.distance
+  })
+
   const [
     speedyQuote,
     lalamoveQuote,
     transportifyQuote,
-    grabQuote
+    grabQuote,
+    happymoveQuote
   ] = await Promise.all([
     speedyCall(),
     lalamoveCall(),
     transportifyCall(),
-    grabCall()
+    grabCall(),
+    happymoveCall()
   ])
 
   trackQuery({
@@ -86,7 +94,8 @@ export default async (
       grab: grabQuote,
       speedy: speedyQuote,
       lalamove: lalamoveQuote,
-      transportify: transportifyQuote
+      transportify: transportifyQuote,
+      happymove: happymoveQuote
     },
     cookie,
     distance: googleRes.distance,
@@ -118,7 +127,8 @@ export default async (
         { provider: 'MrSpeedy', fee: speedyQuote },
         { provider: 'Lalamove', fee: lalamoveQuote },
         { provider: 'Transportify', fee: transportifyQuote },
-        { provider: 'Grab', fee: grabQuote }
+        { provider: 'Grab', fee: grabQuote },
+        { provider: 'Happymove', fee: happymoveQuote }
       ]
     }
   }
