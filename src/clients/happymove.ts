@@ -11,7 +11,7 @@ const distanceToPrice = (size,distance) => {
 
 const happymoveRequest = (req) => {
   const size = req.size
-  const distance = Math.ceil(req.distance.split(' ')[0])
+  const distance = Math.floor(req.distance.split(' ')[0])
 
   const price = distanceToPrice(size,distance)
 
