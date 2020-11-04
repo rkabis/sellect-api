@@ -6,7 +6,8 @@ const cleanString = (input) => {
       output += input.charAt(i)
     }
   }
-  return output
+
+  return output.replace('&', '')
 }
 
 export default cleanString
