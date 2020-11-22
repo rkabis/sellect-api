@@ -29,6 +29,7 @@ export default {
           };
           location: string;
           contactNumber: string;
+          businessName: string;
         };
       }
     ) => {
@@ -37,14 +38,16 @@ export default {
         email,
         hours,
         location,
-        contactNumber
+        contactNumber,
+        businessName
       } = _args.input
 
       return createLink({
         email,
         hours,
         location,
-        contactNumber
+        contactNumber,
+        businessName
       })
     },
     updateLinkView: (

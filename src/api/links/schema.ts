@@ -20,6 +20,7 @@ const typeDefs = gql`
     location: String!
     contactNumber: String
     hours: Hours
+    businessName: String!
   }
 
   input CreateLinkInput {
@@ -27,6 +28,7 @@ const typeDefs = gql`
     location: String!
     contactNumber: String
     hours: HoursInput
+    businessName: String!
   }
 
   input HoursInput {

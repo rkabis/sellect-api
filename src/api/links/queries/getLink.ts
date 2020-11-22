@@ -12,6 +12,7 @@ export default async (
 
   return {
     linkId: getLinkRes.id,
+    businessName: getLinkRes.businessName,
     email: getLinkRes.email,
     hours: getLinkRes.hours,
     location: getLinkRes.location,

@@ -6,7 +6,8 @@ export const createLink = async (req) => {
     contactNumber: req.contactNumber,
     hours: req.hours,
     location: req.location,
-    views: 0
+    views: 0,
+    businessName: req.businessName
   })
 
   const res = await link.save()

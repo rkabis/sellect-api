@@ -9,6 +9,7 @@ export default async (
 			upper: string;
 		};
 		location: string;
+    businessName: string;
 	}
 ) => {
 
@@ -16,15 +17,20 @@ export default async (
     email,
     contactNumber,
     hours,
-    location
+    location,
+    businessName
   } = args
 
   const createLinkRes = await createLink({
     email,
     hours,
     location,
-    contactNumber
+    contactNumber,
+    businessName
   })
 
-  return createLinkRes
+  return {
+    isSuccessful: createLinkRes.isSuccessful,
+    linkId: createLinkRes.linkId
+  }
 }
