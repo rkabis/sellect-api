@@ -1,4 +1,4 @@
-import { createLink } from '../mutations/'
+import { createLink, updateLinkView } from '../mutations/'
 import { getLink } from '../queries/'
 
 export default {
@@ -46,6 +46,16 @@ export default {
         location,
         contactNumber
       })
+    },
+    updateLinkView: (
+      _root: undefined,
+      _args: {
+        linkId: string;
+      }
+    ) => {
+      const { linkId } = _args
+
+      return updateLinkView({ linkId })
     }
   }
 }

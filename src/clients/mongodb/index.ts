@@ -5,7 +5,8 @@ export const createLink = async (req) => {
     email: req.email,
     contactNumber: req.contactNumber,
     hours: req.hours,
-    location: req.location
+    location: req.location,
+    views: 0
   })
 
   const res = await link.save()
@@ -31,6 +32,21 @@ export const getLink = async (linkId) => {
   } catch (err) {
     console.log(err)
     return null
+  }
+}
+
+export const updateLinkView = async (linkId) => {
+  try {
+    await Link.updateOne(
+      { _id: linkId },
+      { $inc: { 'views': 1 } }
+    )
+
+    return true
+  } catch (err) {
+    console.log(err)
+
+    return false
   }
 }
 

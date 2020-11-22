@@ -1,5 +1,7 @@
 import createLink from './createLink'
+import updateLinkView from './updateLinkView'
 
 export {
-  createLink
+  createLink,
+  updateLinkView
 }

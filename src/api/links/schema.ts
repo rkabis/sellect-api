@@ -3,10 +3,15 @@ import gql from 'graphql-tag'
 const typeDefs = gql`
   extend type Mutation {
     createLink(input: CreateLinkInput): CreateLinkOutput!
+    updateLinkView(linkId: String!): UpdateLinkViewOutput!
   }
 
   extend type Query {
     getLink(linkId: String!): GetLinkOutput!
+  }
+
+  type UpdateLinkViewOutput {
+    isSuccessful: Boolean!
   }
 
   type GetLinkOutput {
