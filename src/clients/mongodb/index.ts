@@ -1,4 +1,5 @@
 import { Link } from './link'
+import { Quotation } from './quotation'
 
 export const createLink = async (req) => {
   const link = new Link({
@@ -48,6 +49,31 @@ export const updateLinkView = async (linkId) => {
     console.log(err)
 
     return false
+  }
+}
+
+export const createLinkQuotation = async (req) => {
+  const quotation = new Quotation({
+    linkId: req.linkId,
+    customerNumber: req.customerNumber,
+    customerEmail: req.customerEmail,
+    customerLocation: req.customerLocation,
+    vehicleType: req.vehicleType,
+    quotations: req.quotations
+  })
+
+  const res = await quotation.save()
+
+  if (res) {
+    return {
+      isSuccessful: true,
+      quotationId: res._id
+    }
+  } else {
+    return {
+      isSuccessful: false,
+      quotationId: null
+    }
   }
 }
 

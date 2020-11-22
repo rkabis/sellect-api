@@ -1,4 +1,4 @@
-// import { createLinkQuotation } from '../../../clients/mongodb/'
+import { createLinkQuotation } from '../../../clients/mongodb/'
 import getAllQuotatations from '../../../utils/getAllQuotatations'
 
 export default async (
@@ -25,18 +25,17 @@ export default async (
     size: 'small'
   })
 
-  console.log(allQuotations)
-
-  // const createLinkRes = await createLink({
-  //   email,
-  //   hours,
-  //   location,
-  //   contactNumber,
-  //   businessName
-  // })
+  const res = await createLinkQuotation({
+    linkId,
+    customerNumber,
+    customerEmail,
+    customerLocation,
+    vehicleType,
+    quotations: allQuotations
+  })
 
   return {
-    isSuccessful: true,
-    quotationId: '123'
+    isSuccessful: res.isSuccessful,
+    quotationId: res.quotationId
   }
 }

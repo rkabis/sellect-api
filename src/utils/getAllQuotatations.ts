@@ -67,11 +67,11 @@ export default async (
   ])
 
   return {
-    deliveryRequest: {
+    locationInput: {
       origin,
       destination
     },
-    deliveryResponse: {
+    locationResponse: {
       origin: {
         name: googleOrigin,
         lng: googleRes.originGeo.lng,
