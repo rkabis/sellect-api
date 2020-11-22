@@ -1,6 +1,6 @@
 import { Link } from './link'
 
-export const CreateLink = async (req) => {
+export const createLink = async (req) => {
   const link = new Link({
     email: req.email,
     contactNumber: req.contactNumber,
@@ -22,3 +22,15 @@ export const CreateLink = async (req) => {
     }
   }
 }
+
+export const getLink = async (linkId) => {
+  try {
+    const res = await Link.findById(linkId)
+
+    return res
+  } catch (err) {
+    console.log(err)
+    return null
+  }
+}
+

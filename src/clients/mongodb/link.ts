@@ -7,7 +7,8 @@ const LinkSchema = new Schema({
   hours: {
     lower: String,
     upper: String
-  }
+  },
+  location: String
 })
 
 LinkSchema.plugin(timestamps)

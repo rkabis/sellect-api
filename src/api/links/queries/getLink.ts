@@ -1,4 +1,4 @@
-// import { getLink } from '../../../clients/mongodb/'
+import { getLink } from '../../../clients/mongodb/'
 
 export default async (
   args: {
@@ -8,9 +8,13 @@ export default async (
 
   const { linkId } = args
 
-  // const getLinkRes = await getLink({ linkId })
+  const getLinkRes = await getLink(linkId)
 
   return {
-    linkId
+    linkId: getLinkRes.id,
+    email: getLinkRes.email,
+    hours: getLinkRes.hours,
+    location: getLinkRes.location,
+    contactNumber: getLinkRes.contactNumber
   }
 }

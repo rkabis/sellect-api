@@ -1,4 +1,4 @@
-import { CreateLink } from '../../../clients/mongodb/'
+import { createLink } from '../../../clients/mongodb/'
 
 export default async (
   args: {
@@ -19,7 +19,7 @@ export default async (
     location
   } = args
 
-  const createLinkRes = await CreateLink({
+  const createLinkRes = await createLink({
     email,
     hours,
     location,
