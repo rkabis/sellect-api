@@ -3,7 +3,7 @@ import {
   updateLinkView,
   createLinkQuotation
 } from '../mutations/'
-import { getLink } from '../queries/'
+import { getLink, getQuotation } from '../queries/'
 
 export default {
   Query: {
@@ -19,6 +19,17 @@ export default {
       } = _args
 
       return getLink({ linkId })
+    },
+    getQuotation: (
+      _root: undefined,
+      _args: {
+        quotationId: string;
+      }
+    ) => {
+
+      const { quotationId } = _args
+
+      return getQuotation({ quotationId })
     }
   },
   Mutation: {

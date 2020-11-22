@@ -77,3 +77,13 @@ export const createLinkQuotation = async (req) => {
   }
 }
 
+export const getQuotation = async (quotationId) => {
+  try {
+    const res = await Quotation.findById(quotationId)
+
+    return res
+  } catch (err) {
+    console.log(err)
+    return null
+  }
+}

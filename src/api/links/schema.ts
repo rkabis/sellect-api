@@ -9,6 +9,11 @@ const typeDefs = gql`
 
   extend type Query {
     getLink(linkId: String!): GetLinkOutput!
+    getQuotation(quotationId: String!): GetQuotationOutput!
+  }
+
+  type GetQuotationOutput {
+    customerEmail: String
   }
 
   type CreateLinkQuotationOutput {
