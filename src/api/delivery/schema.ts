@@ -36,10 +36,10 @@ const typeDefs = gql`
 
   extend type Query {
     getDeliveryQuote(
-    origin: String!,
-    destination: String!,
-    size: String,
-    cookie: String
+      origin: String!,
+      destination: String!,
+      size: String,
+      cookie: String
     ): DeliveryQuote
   } 
 `
