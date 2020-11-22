@@ -1,4 +1,5 @@
 // import { createLinkQuotation } from '../../../clients/mongodb/'
+import getAllQuotatations from '../../../utils/getAllQuotatations'
 
 export default async (
   args: {
@@ -17,6 +18,14 @@ export default async (
     customerLocation,
     vehicleType
   } = args
+
+  const allQuotations = await getAllQuotatations({
+    origin: 'university of the philippines',
+    destination: 'up diliman',
+    size: 'small'
+  })
+
+  console.log(allQuotations)
 
   // const createLinkRes = await createLink({
   //   email,
