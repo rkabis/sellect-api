@@ -1,4 +1,4 @@
-import { createLinkQuotation, getLink } from '../../../clients/mongodb/'
+import { createQuotation, getLink } from '../../../clients/mongodb/'
 import getAllQuotatations from '../../../utils/getAllQuotatations'
 
 export default async (
@@ -27,7 +27,7 @@ export default async (
     size: vehicleType
   })
 
-  const res = await createLinkQuotation({
+  const res = await createQuotation({
     linkId,
     customerNumber,
     customerEmail,

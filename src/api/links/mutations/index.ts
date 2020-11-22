@@ -1,9 +1,9 @@
 import createLink from './createLink'
 import updateLinkView from './updateLinkView'
-import createLinkQuotation from './createLinkQuotation'
+import createQuotation from './createQuotation'
 
 export {
   createLink,
   updateLinkView,
-  createLinkQuotation
+  createQuotation
 }

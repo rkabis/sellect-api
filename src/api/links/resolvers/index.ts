@@ -1,7 +1,7 @@
 import {
   createLink,
   updateLinkView,
-  createLinkQuotation
+  createQuotation
 } from '../mutations/'
 import { getLink, getQuotation } from '../queries/'
 
@@ -75,7 +75,7 @@ export default {
 
       return updateLinkView({ linkId })
     },
-    createLinkQuotation: (
+    createQuotation: (
       _root: undefined,
       _args: {
         input: {
@@ -95,7 +95,7 @@ export default {
         vehicleType
       } = _args.input
 
-      return createLinkQuotation({
+      return createQuotation({
         linkId,
         customerNumber,
         customerEmail,

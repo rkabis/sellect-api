@@ -52,7 +52,7 @@ export const updateLinkView = async (linkId) => {
   }
 }
 
-export const createLinkQuotation = async (req) => {
+export const createQuotation = async (req) => {
   const quotation = new Quotation({
     linkId: req.linkId,
     customerNumber: req.customerNumber,

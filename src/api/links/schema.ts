@@ -4,7 +4,7 @@ const typeDefs = gql`
   extend type Mutation {
     createLink(input: CreateLinkInput): CreateLinkOutput!
     updateLinkView(linkId: String!): UpdateLinkViewOutput!
-    createLinkQuotation(input: CreateLinkQuotationInput!): CreateLinkQuotationOutput!
+    createQuotation(input: CreateQuotationInput!): CreateQuotationOutput!
   }
 
   extend type Query {
@@ -16,12 +16,12 @@ const typeDefs = gql`
     customerEmail: String
   }
 
-  type CreateLinkQuotationOutput {
+  type CreateQuotationOutput {
     isSuccessful: Boolean!
     quotationId: String
   }
 
-  input CreateLinkQuotationInput {
+  input CreateQuotationInput {
     linkId: String!
     customerNumber: String
     customerEmail: String
