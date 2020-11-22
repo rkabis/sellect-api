@@ -2,14 +2,24 @@ import gql from 'graphql-tag'
 
 const typeDefs = gql`
   extend type Mutation {
-    createLink(
-      email: String!
-    ): Link!
+    createLink(input: CreateLinkInput): Link!
+  }
+
+  input CreateLinkInput {
+    email: String!
+    location: String!
+    contactNumber: String
+    hours: Hours
+  }
+
+  input Hours {
+    lower: String
+    upper: String
   }
 
   type Link {
     isSuccessful: Boolean!
-    referenceCode: String
+    linkId: String
   }
 `
 

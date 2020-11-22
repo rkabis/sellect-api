@@ -5,13 +5,31 @@ export default {
     createLink: (
       _root: undefined,
       _args: {
-        email: string;
+        input: {
+          email: string;
+          hours: {
+            lower: string;
+            upper: string;
+          };
+          location: string;
+          contactNumber: string;
+        };
       }
     ) => {
 
-      const { email } = _args
+      const {
+        email,
+        hours,
+        location,
+        contactNumber
+      } = _args.input
 
-      return createLink({ email })
+      return createLink({
+        email,
+        hours,
+        location,
+        contactNumber
+      })
     }
   }
 }

@@ -1,13 +1,30 @@
+import { CreateLink } from '../../../clients/mongodb/'
+
 export default async (
   args: {
-    email: string;
-  }
+		email: string;
+		contactNumber: string;
+		hours: {
+			lower: string;
+			upper: string;
+		};
+		location: string;
+	}
 ) => {
 
-  const { email } = args
+  const {
+    email,
+    contactNumber,
+    hours,
+    location
+  } = args
 
-  return {
-    isSuccessful: true,
-    referenceCode: email
-  }
+  const createLinkRes = await CreateLink({
+    email,
+    hours,
+    location,
+    contactNumber
+  })
+
+  return createLinkRes
 }
