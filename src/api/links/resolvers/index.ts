@@ -1,4 +1,8 @@
-import { createLink, updateLinkView } from '../mutations/'
+import {
+  createLink,
+  updateLinkView,
+  createLinkQuotation
+} from '../mutations/'
 import { getLink } from '../queries/'
 
 export default {
@@ -59,6 +63,34 @@ export default {
       const { linkId } = _args
 
       return updateLinkView({ linkId })
+    },
+    createLinkQuotation: (
+      _root: undefined,
+      _args: {
+        input: {
+          linkId: string;
+          customerLocation: string;
+          customerEmail: string;
+          customerNumber: string;
+          vehicleType: string;
+        };
+      }
+    ) => {
+      const {
+        linkId,
+        customerNumber,
+        customerEmail,
+        customerLocation,
+        vehicleType
+      } = _args.input
+
+      return createLinkQuotation({
+        linkId,
+        customerNumber,
+        customerEmail,
+        customerLocation,
+        vehicleType
+      })
     }
   }
 }
