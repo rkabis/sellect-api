@@ -3,13 +3,13 @@ import timestamps from 'mongoose-timestamp'
 
 const LinkSchema = new Schema({
   businessName: String,
-  email: String,
-  contactNumber: String,
-  hours: {
+  businessEmail: String,
+  businessContactNumber: String,
+  businessHours: {
     lower: String,
     upper: String
   },
-  location: String,
+  businessLocation: String,
   views: Number
 })
 

@@ -30,27 +30,27 @@ const typeDefs = gql`
 
   type GetLinkOutput {
     linkId: String!
-    email: String!
-    location: String!
-    contactNumber: String
-    hours: Hours
+    businessEmail: String!
+    businessLocation: String!
+    businessContactNumber: String
+    businessHours: BusinessHours
     businessName: String!
   }
 
   input CreateLinkInput {
-    email: String!
-    location: String!
-    contactNumber: String
-    hours: HoursInput
+    businessEmail: String!
+    businessLocation: String!
+    businessContactNumber: String
+    businessHours: BusinessHoursInput
     businessName: String!
   }
 
-  input HoursInput {
+  input BusinessHoursInput {
     lower: String
     upper: String
   }
 
-  type Hours {
+  type BusinessHours {
     lower: String
     upper: String
   }

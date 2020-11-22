@@ -26,31 +26,31 @@ export default {
       _root: undefined,
       _args: {
         input: {
-          email: string;
-          hours: {
+          businessEmail: string;
+          businessHours: {
             lower: string;
             upper: string;
           };
-          location: string;
-          contactNumber: string;
+          businessLocation: string;
+          businessContactNumber: string;
           businessName: string;
         };
       }
     ) => {
 
       const {
-        email,
-        hours,
-        location,
-        contactNumber,
+        businessEmail,
+        businessHours,
+        businessLocation,
+        businessContactNumber,
         businessName
       } = _args.input
 
       return createLink({
-        email,
-        hours,
-        location,
-        contactNumber,
+        businessEmail,
+        businessHours,
+        businessLocation,
+        businessContactNumber,
         businessName
       })
     },

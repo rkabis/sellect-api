@@ -2,10 +2,10 @@ import { Link } from './link'
 
 export const createLink = async (req) => {
   const link = new Link({
-    email: req.email,
-    contactNumber: req.contactNumber,
-    hours: req.hours,
-    location: req.location,
+    businessEmail: req.businessEmail,
+    businessContactNumber: req.businessContactNumber,
+    businessHours: req.businessHours,
+    businessLocation: req.businessLocation,
     views: 0,
     businessName: req.businessName
   })
