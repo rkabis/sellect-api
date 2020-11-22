@@ -1,4 +1,4 @@
-import { getDeliveryQuote } from '../queries/index'
+import { getDeliveryQuote } from '../queries/'
 
 export default {
   Query: {

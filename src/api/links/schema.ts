@@ -2,7 +2,15 @@ import gql from 'graphql-tag'
 
 const typeDefs = gql`
   extend type Mutation {
-    createLink(input: CreateLinkInput): Link!
+    createLink(input: CreateLinkInput): CreateLinkOutput!
+  }
+
+  extend type Query {
+    getLink(linkId: String!): GetLinkOutput!
+  }
+
+  type GetLinkOutput {
+    linkId: String!
   }
 
   input CreateLinkInput {
@@ -17,7 +25,7 @@ const typeDefs = gql`
     upper: String
   }
 
-  type Link {
+  type CreateLinkOutput {
     isSuccessful: Boolean!
     linkId: String
   }

@@ -1,6 +1,22 @@
-import { createLink } from '../mutations/index'
+import { createLink } from '../mutations/'
+import { getLink } from '../queries/'
 
 export default {
+  Query: {
+    getLink: (
+      _root: undefined,
+      _args: {
+        linkId: string;
+      }
+    ) => {
+
+      const {
+        linkId
+      } = _args
+
+      return getLink({ linkId })
+    }
+  },
   Mutation: {
     createLink: (
       _root: undefined,
