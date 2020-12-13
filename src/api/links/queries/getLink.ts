@@ -16,6 +16,6 @@ export default async (
     businessEmail: getLinkRes.businessEmail,
     businessHours: getLinkRes.businessHours,
     businessLocation: getLinkRes.businessLocation,
-    contactNumber: getLinkRes.contactNumber
+    businessContactNumber: getLinkRes.businessContactNumber
   }
 }
