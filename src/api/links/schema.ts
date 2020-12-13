@@ -13,7 +13,21 @@ const typeDefs = gql`
   }
 
   type GetQuotationOutput {
-    customerEmail: String
+    vehicleType: String!
+    origin: User!
+    destination: User!
+    distance: String!
+    duration: String!
+    fees: [Fee]
+  }
+
+  type User {
+    location: String!
+  }
+
+  type Fee {
+    provider: String!
+    fee: String
   }
 
   type CreateQuotationOutput {
