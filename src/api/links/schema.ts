@@ -25,7 +25,7 @@ const typeDefs = gql`
     linkId: String!
     customerNumber: String
     customerEmail: String
-    customerLocation: String
+    customerLocation: String!
     vehicleType: String!
   }
 
