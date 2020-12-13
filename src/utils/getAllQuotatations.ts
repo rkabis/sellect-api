@@ -32,20 +32,20 @@ export default async (
     origin: { x: googleRes.originGeo.lat, y: googleRes.originGeo.lng },
     destination: { x: googleRes.destinationGeo.lat, y: googleRes.destinationGeo.lng },
     size
-  })
+  }).catch(err => console.log(err))
 
   const transportifyCall = () => transportify({
     origin: { x: googleRes.originGeo.lat, y: googleRes.originGeo.lng },
     destination: { x: googleRes.destinationGeo.lat, y: googleRes.destinationGeo.lng },
     date: dateNow,
     size
-  })
+  }).catch(err => console.log(err))
 
   const grabCall = () => grab({
     origin: googleRes.originGeo,
     destination: googleRes.destinationGeo,
     size
-  })
+  }).catch(err => console.log(err))
 
   const happymoveCall = () => happymove({
     size,
