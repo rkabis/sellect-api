@@ -54,6 +54,7 @@ const typeDefs = gql`
     businessContactNumber: String
     businessHours: BusinessHours
     businessName: String!
+    views: Int!
   }
 
   input CreateLinkInput {
