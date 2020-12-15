@@ -55,6 +55,7 @@ const typeDefs = gql`
     businessHours: BusinessHours
     businessName: String!
     views: Int!
+    businessPhoto: String
   }
 
   input CreateLinkInput {
@@ -63,6 +64,7 @@ const typeDefs = gql`
     businessContactNumber: String!
     businessHours: BusinessHoursInput
     businessName: String!
+    businessPhoto: String
   }
 
   input BusinessHoursInput {

@@ -10,6 +10,7 @@ export default async (
 		};
 		businessLocation: string;
     businessName: string;
+    businessPhoto: string;
 	}
 ) => {
 
@@ -18,7 +19,8 @@ export default async (
     businessContactNumber,
     businessHours,
     businessLocation,
-    businessName
+    businessName,
+    businessPhoto
   } = args
 
   const createLinkRes = await createLink({
@@ -26,7 +28,8 @@ export default async (
     businessHours,
     businessLocation,
     businessContactNumber,
-    businessName
+    businessName,
+    businessPhoto
   })
 
   return {

@@ -45,6 +45,7 @@ export default {
           businessLocation: string;
           businessContactNumber: string;
           businessName: string;
+          businessPhoto: string;
         };
       }
     ) => {
@@ -54,7 +55,8 @@ export default {
         businessHours,
         businessLocation,
         businessContactNumber,
-        businessName
+        businessName,
+        businessPhoto
       } = _args.input
 
       return createLink({
@@ -62,7 +64,8 @@ export default {
         businessHours,
         businessLocation,
         businessContactNumber,
-        businessName
+        businessName,
+        businessPhoto
       })
     },
     updateLinkView: (
