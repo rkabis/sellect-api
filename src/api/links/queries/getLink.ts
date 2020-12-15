@@ -9,7 +9,7 @@ export default async (
   const { linkId } = args
 
   const getLinkRes = await getLink(linkId)
-  
+
   return {
     linkId: getLinkRes.id,
     businessName: getLinkRes.businessName,

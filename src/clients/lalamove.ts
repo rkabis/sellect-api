@@ -3,39 +3,36 @@ import fetch from 'node-fetch'
 const convertToTransport = (size) => {
   switch (size) {
   case 'small':
-    return 'MOTORCYCLE'
+    return '223427'
   case 'medium':
-    return 'UV_SMALL'
+    return '223428'
   case 'large':
-    return 'VAN'
+    return '223429'
   default:
-    return 'MOTORCYCLE'
+    return '223427'
   }
 }
 
 const lalamoveRequest = async (req) => {
   const transport = convertToTransport(req.size)
 
-  const res = await fetch(
-    `https://app.lalamove.com/api/v5/vanpricecal?version=2.34.1&revision=36&os=webapp&app=user&access_token=A2vxCOpWsuYG1pSvudqRROALSaxJfTkUvhWx9pQr&client_id=7318916&country=PH_MNL&args=%7B%22redeem%22%3A%22%22%2C%22latlong%22%3A%22${req.origin.x}%7C${req.origin.y}%2C${req.destination.x}%7C${req.destination.y}%22%2C%22normal_req%22%3A%5B%7B%22service_type%22%3A%22${transport}%22%7D%5D%2C%22special_req%22%3A%5B%5D%7D`,
-    {
-      'headers': {
-        'accept': '*/*',
-        'accept-language': 'en-US,en;q=0.9',
-        'sec-fetch-dest': 'empty',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'same-site',
-        'x-llm-apptype': 'USER',
-        'x-llm-location': 'PH_MNL'
-      },
-      'referrer': 'https://web.lalamove.com/',
-      'referrerPolicy': 'no-referrer-when-downgrade',
-      'body': null,
-      'method': 'GET',
-      'mode': 'cors'
-    }).then(res => res.json())
+  const res = await fetch(`https://sg-uapi.lalamove.com/?_m=price_calculate&_su=1608017428283ehll2935073167&args=%7B%22city_id%22%3A51001%2C%22order_vehicle_id%22%3A%${transport}%22%2C%22std_tag%22%3A%5B%5D%2C%22std_tag_ids%22%3A%5B%5D%2C%22spec_req%22%3A%5B%5D%2C%22order_time%22%3A1608018028%2C%22city_info_revision%22%3A184%2C%22is_get_max_discount_coupon%22%3A%221%22%2C%22addr_info%22%3A%5B%7B%22name%22%3A%22Alabang%22%2C%22lat_lon%22%3A%7B%22lat%22%3A${req.origin.x}%2C%22lon%22%3A${req.origin.y}%7D%2C%22city_id%22%3A51001%7D%2C%7B%22name%22%3A%22La+Vista+Subdivision+Homeowners+Association%22%2C%22lat_lon%22%3A%7B%22lat%22%3A${req.destination.x}%2C%22lon%22%3A${req.destination.y}%7D%2C%22city_id%22%3A51001%7D%5D%2C%22type%22%3A2%2C%22lat_lon%22%3A%5B%7B%22lat%22%3A${req.origin.x}%2C%22lon%22%3A${req.origin.y}%7D%2C%7B%22lat%22%3A${req.destination.x}%2C%22lon%22%3A${req.destination.y}%7D%5D%2C%22same_num%22%3A1%2C%22pay_type%22%3A31%7D&token=1342e655ee2e4deeb869ab35340ece17&hcountry=50000&hlang=en_ph&is_ep=2&os=web`, {
+    'headers': {
+      'accept': '*/*',
+      'accept-language': 'en-US,en;q=0.9',
+      'sec-fetch-dest': 'empty',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-site': 'same-site',
+      'sec-gpc': '1'
+    },
+    'referrer': 'https://web.lalamove.com/',
+    'referrerPolicy': 'strict-origin-when-cross-origin',
+    'body': null,
+    'method': 'GET',
+    'mode': 'cors'
+  }).then(res => res.json())
 
-  return res.data.basic.toString()
+  return res.data.price_info.final_price.toString().slice(0, -2)
 }
 
 export default lalamoveRequest
