@@ -37,8 +37,8 @@ const typeDefs = gql`
 
   input CreateQuotationInput {
     linkId: String!
-    customerNumber: String
-    customerEmail: String
+    customerNumber: String!
+    customerEmail: String!
     customerLocation: String!
     vehicleType: String!
   }
@@ -60,7 +60,7 @@ const typeDefs = gql`
   input CreateLinkInput {
     businessEmail: String!
     businessLocation: String!
-    businessContactNumber: String
+    businessContactNumber: String!
     businessHours: BusinessHoursInput
     businessName: String!
   }
