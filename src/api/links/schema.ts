@@ -13,6 +13,7 @@ const typeDefs = gql`
   }
 
   type GetQuotationOutput {
+    quotationId: String!
     vehicleType: String!
     origin: POI!
     destination: POI!

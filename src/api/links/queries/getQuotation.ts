@@ -14,6 +14,7 @@ quotationId: string;
   const quote = res.quotations.quoteResponse
 
   return {
+    quotationId,
     vehicleType: res.vehicleType,
     origin: {
       location: location.origin.name
