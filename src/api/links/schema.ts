@@ -14,14 +14,14 @@ const typeDefs = gql`
 
   type GetQuotationOutput {
     vehicleType: String!
-    origin: User!
-    destination: User!
+    origin: POI!
+    destination: POI!
     distance: String!
     duration: String!
     fees: [Fee]
   }
 
-  type User {
+  type POI {
     location: String!
   }
 
