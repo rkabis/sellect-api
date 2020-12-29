@@ -1,4 +1,5 @@
 import { createLink } from '../../../clients/mongodb/'
+import sgMail from '@sendgrid/mail'
 
 export default async (
   args: {
@@ -31,6 +32,26 @@ export default async (
     businessName,
     businessPhoto
   })
+
+  if (createLinkRes.isSuccessful) {
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+    const domain = process.env.DASHBOARD_DOMAIN
+
+    const msg = {
+      to: businessEmail,
+      from: 'no-reply@sellect.express',
+      subject: 'Sellect Express: Successfully Created a Link!',
+      text: `Access your dashboard here: ${domain}/dashboard?id=${createLinkRes.linkId}`
+    }
+    sgMail
+      .send(msg)
+      .then(() => {
+        console.log('Email sent')
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
 
   return {
     isSuccessful: createLinkRes.isSuccessful,
