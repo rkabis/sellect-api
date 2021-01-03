@@ -1,4 +1,8 @@
-import { createQuotation, getLink } from '../../../clients/mongodb/'
+import {
+  createQuotation,
+  getLink,
+  updateLinkQuotation
+} from '../../../clients/mongodb/'
 import getAllQuotatations from '../../../utils/getAllQuotatations'
 
 export default async (
@@ -35,6 +39,10 @@ export default async (
     vehicleType,
     quotations: allQuotations
   })
+
+  if (res.isSuccessful) {
+    updateLinkQuotation(linkId)
+  }
 
   return {
     isSuccessful: res.isSuccessful,

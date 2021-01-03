@@ -4,7 +4,6 @@ const typeDefs = gql`
   extend type Mutation {
     createLink(input: CreateLinkInput): CreateLinkOutput!
     updateLinkView(linkId: String!): UpdateLinkViewOutput!
-    updateLinkQuotation(linkId: String!): UpdateLinkQuotationOutput!
     createQuotation(input: CreateQuotationInput!): CreateQuotationOutput!
   }
 
@@ -46,10 +45,6 @@ const typeDefs = gql`
   }
 
   type UpdateLinkViewOutput {
-    isSuccessful: Boolean!
-  }
-
-  type UpdateLinkQuotationOutput {
     isSuccessful: Boolean!
   }
 
