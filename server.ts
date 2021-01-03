@@ -26,4 +26,11 @@ connection
     console.log(err)
   })
 
-server.start(() => console.log('Server is running on http://localhost:4000'))
+const options = {
+  bodyParserOptions: { limit: '10mb', type: 'application/json' }
+}
+
+server.start(
+  options,
+  () => console.log('Server is running on http://localhost:4000')
+)
