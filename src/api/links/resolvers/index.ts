@@ -1,8 +1,7 @@
 import {
   createLink,
   updateLinkView,
-  createQuotation,
-  updateLinkQuotation
+  createQuotation
 } from '../mutations/'
 import { getLink, getQuotation } from '../queries/'
 
@@ -78,16 +77,6 @@ export default {
       const { linkId } = _args
 
       return updateLinkView({ linkId })
-    },
-    updateLinkQuotation: (
-      _root: undefined,
-      _args: {
-        linkId: string;
-      }
-    ) => {
-      const { linkId } = _args
-
-      return updateLinkQuotation({ linkId })
     },
     createQuotation: (
       _root: undefined,
