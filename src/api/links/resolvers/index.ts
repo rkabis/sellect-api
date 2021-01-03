@@ -85,14 +85,14 @@ export default {
           linkId: string;
           customerLocation: string;
           customerEmail: string;
-          customerNumber: string;
+          customerContactNumber: string;
           vehicleType: string;
         };
       }
     ) => {
       const {
         linkId,
-        customerNumber,
+        customerContactNumber,
         customerEmail,
         customerLocation,
         vehicleType
@@ -100,7 +100,7 @@ export default {
 
       return createQuotation({
         linkId,
-        customerNumber,
+        customerContactNumber,
         customerEmail,
         customerLocation,
         vehicleType

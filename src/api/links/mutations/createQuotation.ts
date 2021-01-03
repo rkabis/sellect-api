@@ -4,7 +4,7 @@ import getAllQuotatations from '../../../utils/getAllQuotatations'
 export default async (
   args: {
     linkId: string;
-    customerNumber: string;
+    customerContactNumber: string;
     customerEmail: string;
     customerLocation: string;
     vehicleType: string;
@@ -13,7 +13,7 @@ export default async (
 
   const {
     linkId,
-    customerNumber,
+    customerContactNumber,
     customerEmail,
     customerLocation,
     vehicleType
@@ -29,7 +29,7 @@ export default async (
 
   const res = await createQuotation({
     linkId,
-    customerNumber,
+    customerContactNumber,
     customerEmail,
     customerLocation,
     vehicleType,

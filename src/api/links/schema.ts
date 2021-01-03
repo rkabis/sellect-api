@@ -38,7 +38,7 @@ const typeDefs = gql`
 
   input CreateQuotationInput {
     linkId: String!
-    customerNumber: String!
+    customerContactNumber: String!
     customerEmail: String!
     customerLocation: String!
     vehicleType: String!

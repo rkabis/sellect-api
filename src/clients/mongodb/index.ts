@@ -56,7 +56,7 @@ export const updateLinkView = async (linkId) => {
 export const createQuotation = async (req) => {
   const quotation = new Quotation({
     linkId: req.linkId,
-    customerNumber: req.customerNumber,
+    customerContactNumber: req.customerContactNumber,
     customerEmail: req.customerEmail,
     customerLocation: req.customerLocation,
     vehicleType: req.vehicleType,
