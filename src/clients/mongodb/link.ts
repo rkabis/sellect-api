@@ -11,6 +11,7 @@ const LinkSchema = new Schema({
   },
   businessLocation: String,
   views: Number,
+  quotations: Number,
   businessPhoto: String
 })
 

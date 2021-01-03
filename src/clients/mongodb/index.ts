@@ -8,6 +8,7 @@ export const createLink = async (req) => {
     businessHours: req.businessHours,
     businessLocation: req.businessLocation,
     views: 0,
+    quotations: 0,
     businessName: req.businessName,
     businessPhoto: req.businessPhoto
   })
@@ -43,6 +44,21 @@ export const updateLinkView = async (linkId) => {
     await Link.updateOne(
       { _id: linkId },
       { $inc: { 'views': 1 } }
+    )
+
+    return true
+  } catch (err) {
+    console.log(err)
+
+    return false
+  }
+}
+
+export const updateLinkQuotation = async (linkId) => {
+  try {
+    await Link.updateOne(
+      { _id: linkId },
+      { $inc: { 'quotations': 1 } }
     )
 
     return true
