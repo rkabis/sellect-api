@@ -46,7 +46,8 @@ export default async (
 
       dynamic_template_data: {
         businessName: businessName,
-        pickupLink: `${domain}/dashboard?id=${createLinkRes.linkId}`
+        dashboardLink: `${domain}/dashboard?id=${createLinkRes.linkId}`,
+        pickupLink: `${domain}/link?id=${createLinkRes.linkId}`
       }
     }
     sgMail
