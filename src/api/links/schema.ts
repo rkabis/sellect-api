@@ -14,6 +14,22 @@ const typeDefs = gql`
 
   type GetQuotationOutput {
     quotationId: String!
+    tripDetails: TripDetails!
+    businessDetails: BusinessDetails!
+    customerDetails: CustomerDetails!
+  }
+
+  type BusinessDetails {
+    businessName: String!
+    businessContactNumber: String!
+    businessHours: BusinessHours!
+  }
+
+  type CustomerDetails {
+    customerContactNumber: String!
+  }
+
+  type TripDetails {
     vehicleType: String!
     origin: POI!
     destination: POI!
@@ -23,7 +39,9 @@ const typeDefs = gql`
   }
 
   type POI {
-    location: String!
+    name: String!
+    lng: Float!
+    lat: Float!
   }
 
   type Fee {

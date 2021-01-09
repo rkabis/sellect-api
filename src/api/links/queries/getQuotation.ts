@@ -1,4 +1,4 @@
-import { getQuotation } from '../../../clients/mongodb/'
+import { getQuotation, getLink } from '../../../clients/mongodb/'
 
 export default async (
   args: {
@@ -8,22 +8,37 @@ quotationId: string;
 
   const { quotationId } = args
 
-  const res = await getQuotation(quotationId)
+  const quotationRes = await getQuotation(quotationId)
+  const linkRes = await getLink(quotationRes.linkId)
 
-  const location = res.quotations.locationResponse
-  const quote = res.quotations.quoteResponse
+  const location = quotationRes.quotations.locationResponse
+  const quote = quotationRes.quotations.quoteResponse
 
   return {
     quotationId,
-    vehicleType: res.vehicleType,
-    origin: {
-      location: location.origin.name
+    businessDetails: {
+      businessName: linkRes.businessName,
+      businessContactNumber: linkRes.businessContactNumber,
+      businessHours: linkRes.businessHours
     },
-    destination: {
-      location: location.destination.name
+    customerDetails: {
+      customerContactNumber: quotationRes.customerContactNumber
     },
-    distance: quote.distance,
-    duration: quote.duration,
-    fees: quote.fees
+    tripDetails: {
+      vehicleType: quotationRes.vehicleType,
+      origin: {
+        name: location.origin.name,
+        lng: location.origin.lng,
+        lat: location.origin.lat
+      },
+      destination: {
+        name: location.destination.name,
+        lng: location.destination.lng,
+        lat: location.destination.lat
+      },
+      distance: quote.distance,
+      duration: quote.duration,
+      fees: quote.fees
+    }
   }
 }
