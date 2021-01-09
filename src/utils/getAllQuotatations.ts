@@ -4,6 +4,7 @@ import lalamove from '../clients/lalamove'
 import transportify from '../clients/transportify'
 import grab from '../clients/grab'
 import happymove from '../clients/happymove'
+import toktok from '../clients/toktok'
 
 export default async (
   args: {
@@ -52,18 +53,25 @@ export default async (
     distance: googleRes.distance
   })
 
+  const toktokCall = () => toktok({
+    origin: googleRes.originGeo,
+    destination: googleRes.destinationGeo
+  })
+
   const [
     speedyQuote,
     lalamoveQuote,
     transportifyQuote,
     grabQuote,
-    happymoveQuote
+    happymoveQuote,
+    toktokQuote
   ] = await Promise.all([
     speedyCall(),
     lalamoveCall(),
     transportifyCall(),
     grabCall(),
-    happymoveCall()
+    happymoveCall(),
+    toktokCall()
   ])
 
   return {
@@ -91,7 +99,8 @@ export default async (
         { provider: 'Lalamove', fee: lalamoveQuote },
         { provider: 'Transportify', fee: transportifyQuote },
         { provider: 'Grab', fee: grabQuote },
-        { provider: 'Happymove', fee: happymoveQuote }
+        { provider: 'Happymove', fee: happymoveQuote },
+        { provider: 'Toktok', fee: toktokQuote }
       ]
     }
   }
