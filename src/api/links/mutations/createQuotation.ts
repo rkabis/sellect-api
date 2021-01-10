@@ -55,6 +55,7 @@ export default async (
 
       dynamic_template_data: {
         customerEmail: customerEmail,
+        businessName: getLinkRes.businessName,
         quotationLink: `${domain}/quotation?id=${createQuotationRes.quotationId}`
       }
     }
