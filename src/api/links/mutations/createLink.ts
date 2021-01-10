@@ -41,7 +41,6 @@ export default async (
     const msg = {
       to: businessEmail,
       from: 'no-reply@sellect.express',
-      subject: 'Sellect Express: Successfully Created a Link!',
       templateId: templateId,
 
       dynamic_template_data: {

@@ -4,6 +4,7 @@ import {
   updateLinkQuotation
 } from '../../../clients/mongodb/'
 import getAllQuotatations from '../../../utils/getAllQuotatations'
+import sgMail from '@sendgrid/mail'
 
 export default async (
   args: {
@@ -31,7 +32,7 @@ export default async (
     size: vehicleType
   })
 
-  const res = await createQuotation({
+  const createQuotationRes = await createQuotation({
     linkId,
     customerContactNumber,
     customerEmail,
@@ -40,12 +41,35 @@ export default async (
     quotations: allQuotations
   })
 
-  if (res.isSuccessful) {
+  if (createQuotationRes.isSuccessful) {
     updateLinkQuotation(linkId)
+
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+    const domain = process.env.DASHBOARD_DOMAIN
+    const templateId = process.env.SENDGRID_QUOTATION_TEMPLATE_ID
+
+    const msg = {
+      to: customerEmail,
+      from: 'no-reply@sellect.express',
+      templateId: templateId,
+
+      dynamic_template_data: {
+        customerEmail: customerEmail,
+        quotationLink: `${domain}/quotation?id=${createQuotationRes.quotationId}`
+      }
+    }
+    sgMail
+      .send(msg)
+      .then(() => {
+        console.log('Email sent')
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   return {
-    isSuccessful: res.isSuccessful,
-    quotationId: res.quotationId
+    isSuccessful: createQuotationRes.isSuccessful,
+    quotationId: createQuotationRes.quotationId
   }
 }
