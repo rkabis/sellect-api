@@ -72,6 +72,7 @@ export const updateLinkQuotation = async (linkId) => {
 export const createQuotation = async (req) => {
   const quotation = new Quotation({
     linkId: req.linkId,
+    customerName: req.customerName,
     customerContactNumber: req.customerContactNumber,
     customerEmail: req.customerEmail,
     customerLocation: req.customerLocation,

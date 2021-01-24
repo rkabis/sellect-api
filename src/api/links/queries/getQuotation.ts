@@ -22,6 +22,7 @@ quotationId: string;
       businessHours: linkRes.businessHours
     },
     customerDetails: {
+      customerName: quotationRes.customerName,
       customerContactNumber: quotationRes.customerContactNumber
     },
     tripDetails: {

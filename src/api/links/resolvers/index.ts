@@ -83,6 +83,7 @@ export default {
       _args: {
         input: {
           linkId: string;
+          customerName: string;
           customerLocation: string;
           customerEmail: string;
           customerContactNumber: string;
@@ -92,6 +93,7 @@ export default {
     ) => {
       const {
         linkId,
+        customerName,
         customerContactNumber,
         customerEmail,
         customerLocation,
@@ -100,6 +102,7 @@ export default {
 
       return createQuotation({
         linkId,
+        customerName,
         customerContactNumber,
         customerEmail,
         customerLocation,

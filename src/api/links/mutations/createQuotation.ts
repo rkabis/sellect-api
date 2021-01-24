@@ -9,6 +9,7 @@ import sgMail from '@sendgrid/mail'
 export default async (
   args: {
     linkId: string;
+    customerName: string;
     customerContactNumber: string;
     customerEmail: string;
     customerLocation: string;
@@ -18,6 +19,7 @@ export default async (
 
   const {
     linkId,
+    customerName,
     customerContactNumber,
     customerEmail,
     customerLocation,
@@ -34,6 +36,7 @@ export default async (
 
   const createQuotationRes = await createQuotation({
     linkId,
+    customerName,
     customerContactNumber,
     customerEmail,
     customerLocation,
@@ -54,6 +57,7 @@ export default async (
       templateId: templateId,
 
       dynamic_template_data: {
+        customerName: customerName,
         customerEmail: customerEmail,
         businessName: getLinkRes.businessName,
         quotationLink: `${domain}/quotation?id=${createQuotationRes.quotationId}`

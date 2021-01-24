@@ -3,6 +3,7 @@ import timestamps from 'mongoose-timestamp'
 
 const QuotationSchema = new Schema({
   linkId: String,
+  customerName: String,
   customerContactNumber: String,
   customerEmail: String,
   customerLocation: String,

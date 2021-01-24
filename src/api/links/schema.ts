@@ -26,6 +26,7 @@ const typeDefs = gql`
   }
 
   type CustomerDetails {
+    customerName: String!
     customerContactNumber: String!
   }
 
@@ -56,6 +57,7 @@ const typeDefs = gql`
 
   input CreateQuotationInput {
     linkId: String!
+    customerName: String!
     customerContactNumber: String!
     customerEmail: String!
     customerLocation: String!
