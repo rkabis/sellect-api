@@ -28,12 +28,12 @@ quotationId: string;
     tripDetails: {
       vehicleType: quotationRes.vehicleType,
       origin: {
-        name: location.origin.name,
+        name: linkRes.businessLocation,
         lng: location.origin.lng,
         lat: location.origin.lat
       },
       destination: {
-        name: location.destination.name,
+        name: quotationRes.customerLocation,
         lng: location.destination.lng,
         lat: location.destination.lat
       },
