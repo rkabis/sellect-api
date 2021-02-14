@@ -5,6 +5,7 @@ import transportify from '../../../clients/transportify'
 import grab from '../../../clients/grab'
 import happymove from '../../../clients/happymove'
 import toktok from '../../../clients/toktok'
+import jgo from '../../../clients/jgo'
 import { trackQuery, trackError } from '../../../clients/airtable'
 
 export default async (
@@ -70,20 +71,24 @@ export default async (
     destination: googleRes.destinationGeo
   })
 
+  const jgoCall = () => jgo({ distance: googleRes.distance })
+
   const [
     speedyQuote,
     lalamoveQuote,
     transportifyQuote,
     grabQuote,
     happymoveQuote,
-    toktokQuote
+    toktokQuote,
+    jgoQuote
   ] = await Promise.all([
     speedyCall(),
     lalamoveCall(),
     transportifyCall(),
     grabCall(),
     happymoveCall(),
-    toktokCall()
+    toktokCall(),
+    jgoCall()
   ])
 
   trackQuery({
@@ -138,7 +143,8 @@ export default async (
         { provider: 'Transportify', fee: transportifyQuote },
         { provider: 'Grab', fee: grabQuote },
         { provider: 'Happymove', fee: happymoveQuote },
-        { provider: 'Toktok', fee: toktokQuote }
+        { provider: 'Toktok', fee: toktokQuote },
+        { provider: 'JGO', fee: jgoQuote }
       ]
     }
   }
