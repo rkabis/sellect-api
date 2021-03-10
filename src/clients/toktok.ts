@@ -9,7 +9,7 @@ const toktok = async (
 
   const { destination, origin } = req
 
-  const res = await fetch(`https://toktok.ph/app/websiteBooking/getDeliveryPriceAndDirections/?f_sender_mobile=09171234567&f_sender_lat=${origin.lat}&f_sender_lon=${origin.lng}&f_promo_code=&destinations%5B0%5D%5Brecipient_lat%5D=${destination.lat}&destinations%5B0%5D%5Brecipient_lon%5D=${destination.lng}&isExpress=false&referral_code=`, {
+  const res = await fetch(`https://toktok.ph/app/websiteBooking/getDeliveryPriceAndDirections/?f_sender_lat=${origin.lat}&f_sender_lon=${origin.lng}&f_promo_code=&destinations%5B0%5D%5Brecipient_lat%5D=${destination.lat}&destinations%5B0%5D%5Brecipient_lon%5D=${destination.lng}&isExpress=false&isCashOnDelivery=false`, {
     'headers': {
       'accept': '*/*',
       'accept-language': 'en-US,en;q=0.9',
